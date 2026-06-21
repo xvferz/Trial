@@ -401,7 +401,7 @@ const playlist = [{
 {
     title: "FaSHioN",
     artist: "Cortis",
-    audioSrc: "FaSHion.mp3",
+    audioSrc: "FaSHioN.mp3",
     imageSrc: "https://cdn-images.dzcdn.net/images/cover/8f9f78c1d05272b49f357a7603c6a5eb/1900x1900-000000-80-0-0.jpg",
 },
 {
