@@ -399,7 +399,7 @@ const playlist = [{
     imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-0bO9oJ93ZRD8kPAXbD5DZI2P2QM62FQy1zg6oiccvQ&s",
 },
 {
-    title: "FaSHion",
+    title: "FaSHioN",
     artist: "Cortis",
     audioSrc: "FaSHion.mp3",
     imageSrc: "https://cdn-images.dzcdn.net/images/cover/8f9f78c1d05272b49f357a7603c6a5eb/1900x1900-000000-80-0-0.jpg",
