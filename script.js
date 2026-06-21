@@ -358,6 +358,10 @@ audio.addEventListener('ended', () => {
 });
 
 audio.addEventListener('timeupdate', () => {
+    if (!isNaN(audio.duration)) {
+        const progressPercent = (audio.currentTime / audio.duration) * 100;
+        document.getElementById('progress-bar').value = progressPercent;
+    }
     if (!isDragging) {
         const progress = (audio.currentTime / audio.duration) * 100;
         document.getElementById('current-time').textContent = Math.floor(audio.currentTime / 60) + ':' + Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
@@ -428,6 +432,8 @@ function loadSong(index) {
     console.log ("Cek Data Warna:", song.bgColor);
     document.getElementById('progress-bar').value = 0;
     audio.src = song.audioSrc;
+    audio.currentTime = 0;
+    document.getElementById('progress-bar').value = 0;
     playPauseBtn.innerHTML = `
     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M9 3H10V4H9V3Z" fill="black"/>
