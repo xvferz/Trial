@@ -358,15 +358,14 @@ audio.addEventListener('ended', () => {
 });
 
 audio.addEventListener('timeupdate', () => {
-    if (!isNaN(audio.duration)) {
-        const progressPercent = (audio.currentTime / audio.duration) * 100;
+if (!isNaN(audio.duration)) {
+        
+    if (!isDragging) {
+       const progressPercent = (audio.currentTime / audio.duration) * 100;
+        document.getElementById('current-time').textContent = Math.floor(audio.currentTime / 60) + ':' + Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
         document.getElementById('progress-bar').value = progressPercent;
     }
-    if (!isDragging) {
-        const progress = (audio.currentTime / audio.duration) * 100;
-        document.getElementById('current-time').textContent = Math.floor(audio.currentTime / 60) + ':' + Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
-        document.getElementById('progress-bar').value = progress;
-    }
+}
 });
 document.getElementById('progress-bar').addEventListener('input', () => {
     isDragging = true;
