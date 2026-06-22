@@ -13,6 +13,7 @@ let isRepeat = false;
 const shuffleBtn = document.getElementById('shuffle-btn');
 const repeatBtn = document.getElementById('repeat-btn');
 
+
 // Play Button 
 playPauseBtn.addEventListener('click', () => {
     console.log("TOMBOL BERHASIL DIKLIK BOSH!");
@@ -198,10 +199,10 @@ const muteBtn = document.getElementById('mute-btn');
 muteBtn.addEventListener('click', () => {
     audio.muted =!audio.muted;
     if(audio.muted) {
-        muteBtn.textContent = '🔇'
+        muteBtn.setAttribute('name', 'volume-mute-outline');
     } 
     else {
-        muteBtn.textContent ='🔊'
+        muteBtn.setAttribute('name', 'volume-high-outline');
     }
 
 });

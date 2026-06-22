@@ -41,9 +41,26 @@ img {
     button {
         border : none;
         background: none;
-        margin: 15px;
+        margin: 5px;
         padding: 0px;
         cursor: pointer;
+    }
+
+    #mute-btn {
+        font-size: 24px;
+        margin-bottom: -1px;
+        padding: 0px;
+        cursor: pointer;
+        transform: translateY(2px);
+
+
+    }
+    #play-pause-btn {
+        transform: scale(1.3);
+    }
+
+    #repeat-btn {
+        transform : translateY(-4px)
     }
 
     #shuffle-btn {
@@ -51,6 +68,7 @@ img {
         margin-bottom: -1px;
         padding: 0px;
         cursor: pointer;
+        margin-bottom: 3px;
     }
 #song-title, #artist-name {
     margin: 5px 0;
