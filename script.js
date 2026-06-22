@@ -7,6 +7,12 @@ const playPauseBtn = document.getElementById('play-pause-btn');
 
 let currentSongIndex = 0;
 
+let isShuffle = false;
+let isRepeat = false;
+
+const shuffleBtn = document.getElementById('shuffle-btn');
+const repeatBtn = document.getElementById('repeat-btn');
+
 // Play Button 
 playPauseBtn.addEventListener('click', () => {
     console.log("TOMBOL BERHASIL DIKLIK BOSH!");
@@ -22,18 +28,33 @@ playPauseBtn.addEventListener('click', () => {
 
 //pause button
 audio.addEventListener('ended', () => {
-    currentSongIndex = (currentSongIndex + 1) % playlist.length;
-    loadSong(currentSongIndex);
-    playPauseBtn.innerHTML = `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    playPauseBtn.innerHTML = `<svg width="32" height="32" viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg">
 <rect x="8" y="3" width="5" height="25" rx="2.5" fill="white"/>
 <rect x="16" y="3" width="5" height="25" rx="2.5" fill="white"/>
 </svg>
 
 `;
-    if (currentSongIndex === 0) {
-        currentSongIndex === playlist.length + 1;
+     if (isRepeat){
+        audio.currentTime=0;
+        audio.play()
     }
-    audio.play()
+
+     else if (isShuffle){
+        let randomIndex = Math.floor(Math.random() * playlist.length);
+
+        while(randomIndex === currentSongIndex) {
+            randomIndex = Math.floor(Math.random() * playlist.length);
+        }
+    currentSongIndex = randomIndex;
+    loadSong(currentSongIndex);
+    audio.play();
+    }
+
+     else {
+        currentSongIndex = (currentSongIndex + 1) % playlist.length;
+    loadSong(currentSongIndex);
+    audio.play();
+    }   
 });
 
 audio.addEventListener('timeupdate', () => {
@@ -113,7 +134,7 @@ function loadSong(index) {
     audio.currentTime = 0;
     document.getElementById('progress-bar').value = 0;
     playPauseBtn.innerHTML = `
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_2010_666)">
 <path d="M27 14.268C28.3333 15.0378 28.3333 16.9623 27 17.7321L9 28.1244C7.66667 28.8942 6 27.9319 6 26.3923L6 5.60769C6 4.06809 7.66667 3.10584 9 3.87564L27 14.268Z" fill="white"/>
 </g>
@@ -123,27 +144,46 @@ function loadSong(index) {
 </clipPath>
 </defs>
 </svg>
-
 `;
 }
 //play button (357-390)
 
 document.getElementById('prev-btn').addEventListener('click', () => {
-    currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
-    loadSong(currentSongIndex);
-    if (currentSongIndex === 0) {
-        currentSongIndex === playlist.length - 1;
+    if (isShuffle) {
+        let randomIndex=Math.floor(Math.random() * playlist.length);
+        while (randomIndex === currentSongIndex) {
+            randomIndex=Math.floor(Math.random() * playlist.length);
+        }
+        currentSongIndex = randomIndex;
     }
+    else {
+    currentSongIndex--;
+    if (currentSongIndex < 0) {
+        currentSongIndex = playlist.length - 1;
+    }}
+    loadSong(currentSongIndex);
     audio.play()
 });
 
     
 document.getElementById('next-btn').addEventListener('click', () => {
-    currentSongIndex = (currentSongIndex + 1) % playlist.length;
-    loadSong(currentSongIndex);
-    if (currentSongIndex === 0) {
-        currentSongIndex === playlist.length + 1;
+    console.log("Tombol NEXT diklik! Status Shuffle sekarang adalah:", isShuffle);
+    if(isShuffle){
+        let randomIndex = Math.floor(Math.random() * playlist.length);
+
+        while (randomIndex === currentSongIndex){
+            randomIndex=Math.floor(Math.random() * playlist.length);
+        }
+        currentSongIndex=randomIndex;
     }
+
+    else {
+        currentSongIndex++;
+        if (currentSongIndex > playlist.length -1) {
+            currentSongIndex= 0;
+        }
+    }
+    loadSong(currentSongIndex);
     audio.play()
 });
 
@@ -167,7 +207,7 @@ muteBtn.addEventListener('click', () => {
 });
 
 audio.addEventListener('play', () => {
-    playPauseBtn.innerHTML = ` <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    playPauseBtn.innerHTML = ` <svg width="32" height="32" viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg">
 <rect x="8" y="3" width="5" height="25" rx="2.5" fill="white"/>
 <rect x="16" y="3" width="5" height="25" rx="2.5" fill="white"/>
 </svg>
@@ -175,7 +215,7 @@ audio.addEventListener('play', () => {
 })
 
 audio.addEventListener('pause', () => {
-    playPauseBtn.innerHTML =` <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    playPauseBtn.innerHTML =` <svg width="32" height="32" viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_2010_666)">
 <path d="M27 14.268C28.3333 15.0378 28.3333 16.9623 27 17.7321L9 28.1244C7.66667 28.8942 6 27.9319 6 26.3923L6 5.60769C6 4.06809 7.66667 3.10584 9 3.87564L27 14.268Z" fill="white"/>
 </g>
@@ -187,3 +227,20 @@ audio.addEventListener('pause', () => {
 </svg>
 `;
 })
+
+shuffleBtn.addEventListener('click', () => {
+    isShuffle = !isShuffle; 
+    shuffleBtn.style.fill = isShuffle ? '#ffffff' : 'black';
+    shuffleBtn.style.color = isShuffle ? '#ffffff' : 'black';
+});
+
+repeatBtn.addEventListener('click', () => {
+    isRepeat = !isRepeat;
+
+    const iconSvg = repeatBtn.querySelector('svg');
+
+    if (iconSvg){
+        iconSvg.style.fill = isRepeat ? '#ffffff' : 'black';
+
+    }
+});

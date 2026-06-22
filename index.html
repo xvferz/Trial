@@ -30,6 +30,10 @@
          <span id="mute-btn" style="cursor: pointer;">🔊</span><input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
         </div>
           <div class="audio-controls">
+             <button id="repeat-btn">
+            <svg width="24" height="24" fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+  <path fill-rule="evenodd" d="M12 5.25c1.213 0 2.415.046 3.605.135a3.256 3.256 0 0 1 3.01 3.01c.044.583.077 1.17.1 1.759L17.03 8.47a.75.75 0 1 0-1.06 1.06l3 3a.75.75 0 0 0 1.06 0l3-3a.75.75 0 0 0-1.06-1.06l-1.752 1.751c-.023-.65-.06-1.296-.108-1.939a4.756 4.756 0 0 0-4.392-4.392 49.422 49.422 0 0 0-7.436 0A4.756 4.756 0 0 0 3.89 8.282c-.017.224-.033.447-.046.672a.75.75 0 1 0 1.497.092c.013-.217.028-.434.044-.651a3.256 3.256 0 0 1 3.01-3.01c1.19-.09 2.392-.135 3.605-.135Zm-6.97 6.22a.75.75 0 0 0-1.06 0l-3 3a.75.75 0 1 0 1.06 1.06l1.752-1.751c.023.65.06 1.296.108 1.939a4.756 4.756 0 0 0 4.392 4.392 49.413 49.413 0 0 0 7.436 0 4.756 4.756 0 0 0 4.392-4.392c.017-.223.032-.447.046-.672a.75.75 0 0 0-1.497-.092c-.013.217-.028.434-.044.651a3.256 3.256 0 0 1-3.01 3.01 47.953 47.953 0 0 1-7.21 0 3.256 3.256 0 0 1-3.01-3.01 47.759 47.759 0 0 1-.1-1.759L6.97 15.53a.75.75 0 0 0 1.06-1.06l-3-3Z" clip-rule="evenodd" />
+</svg></button>
             <button id="prev-btn"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect x="7" y="28" width="4" height="24" rx="2" transform="rotate(-180 7 28)" fill="white"/>
 <path d="M8 17.7321C6.66667 16.9623 6.66667 15.0377 8 14.2679L20 7.33975C21.3333 6.56995 23 7.5322 23 9.0718V22.9282C23 24.4678 21.3333 25.4301 20 24.6603L8 17.7321Z" fill="white"/>
@@ -37,7 +41,7 @@
 </button>
             <!--play/pause button--> 
 <button id="play-pause-btn">
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="32" height="32" viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_2010_666)">
 <path d="M27 14.268C28.3333 15.0378 28.3333 16.9623 27 17.7321L9 28.1244C7.66667 28.8942 6 27.9319 6 26.3923L6 5.60769C6 4.06809 7.66667 3.10584 9 3.87564L27 14.268Z" fill="white"/>
 </g>
@@ -53,11 +57,14 @@
 <path d="M24 14.2679C25.3333 15.0377 25.3333 16.9623 24 17.7321L12 24.6603C10.6667 25.4301 9 24.4678 9 22.9282L9 9.0718C9 7.5322 10.6667 6.56995 12 7.33975L24 14.2679Z" fill="white"/>
 </svg>
 </button>
+    <ion-icon id="shuffle-btn" name="shuffle"></ion-icon>
     <audio id="my-audio" alt="REDRED Cortis"> 
         <source src="REDRED.mp3" type="audio/mpeg">
     </audio>
         
     </div>
     <script src="script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
